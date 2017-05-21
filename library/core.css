@@ -1,0 +1,41 @@
+﻿/*CSS样式 - by hoshi_hiyouga*/
+@charset "utf-8";
+body {
+	margin:0;
+	padding:0;
+	font-family:Microsoft Yahei;
+}
+img {
+	/*width:100%;*/
+	/*height:auto;*/
+	cursor:pointer;
+}
+a {
+	cursor:pointer;
+}
+#story {
+	white-space:pre-wrap;
+	font-family:Microsoft Yahei;
+	font-size:20px;
+	line-height:30px;
+}
+.charatable{
+	width:70%;
+	text-align:center;
+}
+.charatext{
+	white-space:pre-wrap;
+	padding:20px;
+	text-align:left;
+	font-family:Microsoft Yahei;
+	font-size:20px;
+	line-height:40px;
+}
+.cgimg{
+	width:70%;
+	height:auto;
+	text-align:center;
+}
+#cg{
+	text-align:center;
+}
