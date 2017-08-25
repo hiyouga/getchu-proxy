@@ -74,6 +74,7 @@ if($_GET['type'] == "cg"){
 }
 function curl(){
 	$id = $_GET['id'];
+	require_once 'config.php';
 	$url = "http://www.getchu.com/soft.phtml?id=".$id;
 	$timeout = 10;
 	$ch = curl_init();
@@ -82,10 +83,12 @@ function curl(){
 	curl_setopt($ch,CURLOPT_USERAGENT,'Mozilla/5.0 (Windows NT 6.1; rv:37.0) Gecko/20100101 Firefox/37.0');
 	curl_setopt($ch,CURLOPT_HEADER,0);
 	curl_setopt($ch,CURLOPT_RETURNTRANSFER,1);
-	curl_setopt($ch,CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
-	curl_setopt($ch,CURLOPT_PROXY,"0.0.0.0"); 
-	curl_setopt($ch,CURLOPT_PROXYPORT,2333);
-	curl_setopt($ch,CURLOPT_PROXYTYPE,CURLPROXY_HTTP);
+	if($is_cn){
+		curl_setopt($ch,CURLOPT_PROXYAUTH, CURLAUTH_BASIC);
+		curl_setopt($ch,CURLOPT_PROXY,$ip);
+		curl_setopt($ch,CURLOPT_PROXYPORT,$port);
+		curl_setopt($ch,CURLOPT_PROXYTYPE,CURLPROXY_HTTP);
+	}
 	$contents = curl_exec($ch);
 	curl_close($ch);
 	return mb_convert_encoding($contents,"UTF-8","EUC-JP");
