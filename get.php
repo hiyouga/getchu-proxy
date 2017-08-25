@@ -16,6 +16,7 @@ if($_GET['type'] == "info"){
 	$info1[1] = preg_replace("#<form(.+?)</form>#is","",$info1[1]);
 	//var_dump($info1[1]);exit;
 	preg_match_all("#<TD(.+?)</TD>#is",$info1[1],$info2);
+	$info = '';
 	foreach($info2[0] as $k => $v){
 		$v = strip_tags($v);
 		$v = str_replace("[一覧]","",$v);
@@ -43,13 +44,14 @@ if($_GET['type'] == "info"){
 if($_GET['type'] == "chara"){
 	$id = $_GET['id'];
 	$html = curl();
-	preg_match_all("#chara-text\">(.+?)</TR>#is",$html,$charatext);
-	foreach($charatext[1] as $k => $v){
+	preg_match_all("#chara-text\">(.+?)</TR>#is",$html,$charat);
+	foreach($charat[1] as $k => $v){
 		$v = strip_tags($v);
 		$v = trim($v,"\n");
 		$charatext[$k] = $v;
 	}
 	$n = count($charatext);
+	$chara = '';
 	for($i=1;$i<=$n;$i++){
 		$chara .= "http://www.getchu.com/brandnew/".$id."/c".$id."chara$i.jpg#".$charatext[$i-1]."|";
 	}
@@ -62,6 +64,7 @@ if($_GET['type'] == "cg"){
 	$html = curl();
 	preg_match_all("#alt=\"SAMPLE(.+?)\"#",$html,$cgs);
 	$n = count($cgs[1]);
+	$cg = '';
 	for($i=1;$i<=$n;$i++){
 		$cg .= "http://www.getchu.com/brandnew/".$id."/c".$id."sample$i.jpg|";
 	}
